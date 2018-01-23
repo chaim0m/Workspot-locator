@@ -1,23 +1,23 @@
-let mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
 //design the two schema below and use sub docs
 //to define the relationship between posts and comments
 
 
-let ratingSchema = new mongoose.Schema({
+var ratingSchema = new mongoose.Schema({
     num: Number,
     text: String
 });
 
 
-let addressSchema = new mongoose.Schema({
+var addressSchema = new mongoose.Schema({
     text: String,
     longitude: Number,
     latitude: Number
 });
 
 
-let descriptionSchema = new mongoose.Schema({
+var descriptionSchema = new mongoose.Schema({
     type: String,
     hours: String,
     websiteLink: String,
@@ -28,7 +28,7 @@ let descriptionSchema = new mongoose.Schema({
     isQuiet: Boolean,
     isDogFriendly: Boolean,
 });
-let spotSchema = new mongoose.Schema({
+var spotSchema = new mongoose.Schema({
     name: {type:String, required:true},
     rating: [ratingSchema],
     address: addressSchema,
@@ -36,6 +36,6 @@ let spotSchema = new mongoose.Schema({
     description: descriptionSchema,
 },{usePushEach: true});
 
-let Spot = mongoose.model('spot', spotSchema);
+var Spot = mongoose.model('spot', spotSchema);
 
 module.exports = Spot;
