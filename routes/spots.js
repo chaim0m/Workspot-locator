@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-let mongoose = require('mongoose');
 // let bodyParser = require('body-parser');
 
 // router.use(bodyParser.json());
