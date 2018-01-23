@@ -6,7 +6,9 @@ var mongoose = require('mongoose');
 
 var ratingSchema = new mongoose.Schema({
     num: Number,
-    text: String
+    text: String,
+    created_at: Date,
+
 });
 
 
@@ -34,7 +36,32 @@ var spotSchema = new mongoose.Schema({
     address: addressSchema,
     photo: String,
     description: descriptionSchema,
+    created_at: Date,
+    updated_at: Date,
+
 },{usePushEach: true});
+
+
+function addCreatedUpdatedToSchema(schema) {
+    schema.pre('save', function (next) {
+
+        // get the current date
+        var currentDate = new Date();
+
+        // change the updated_at field to current date
+        this.updated_at = currentDate;
+
+        // if created_at doesn't exist, add to that field
+        if (!this.created_at) {
+            this.created_at = currentDate;
+        }
+
+        next();
+    });
+}
+
+addCreatedUpdatedToSchema(spotSchema);
+addCreatedUpdatedToSchema(ratingSchema);
 
 var Spot = mongoose.model('spot', spotSchema);
 
