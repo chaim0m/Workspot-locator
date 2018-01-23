@@ -7,17 +7,6 @@ var router = express.Router();
 
 var Spot = require('../models/workspotModel');
 
-/* GET home page. */
-router.get('/workspot/:spotID', function(req, res, next) {
-    Spot.findById(req.params.spotID, function(err, spot) {
-        if (err) {
-            return
-        }
-        res.send(spot);
-    });
-});
-
-
 
 router.post('/',function(req, res) {
     console.log("spots post Request Recived", req.body);
@@ -66,6 +55,16 @@ router.get('/createTest', function(req, res, next) {
     spot.description = {hasFood:true,isFree:true,isDogFriendly:false, isQuiet:false, type:"Coffee Shop",websiteLink:"https://www.google.co.il/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&cad=rja&uact=8&ved=0ahUKEwiTwfXCg-7YAhWHERQKHRVjAXMQFggnMAA&url=http%3A%2F%2Fwww.kafe.co.il%2F&usg=AOvVaw2sxUuHygKu22U8d2Hq1s2w", hours:"09:00-20:00 weekdays", text:"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, commodi corporis eligendi eos in magni maiores minima molestiae necessitatibus, neque nobis odio officia provident reiciendis, sed sint soluta voluptatem voluptatibus? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, commodi corporis eligendi eos in magni maiores minima molestiae necessitatibus, neque nobis odio officia provident reiciendis, sed sint soluta voluptatem voluptatibus?"}
     spot.save(function(err, data) {
         res.send(err);
+    });
+});
+
+/* GET home page. */
+router.get('/:spotID', function(req, res, next) {
+    Spot.findById(req.params.spotID, function(err, spot) {
+        if (err) {
+            return
+        }
+        res.send(spot);
     });
 });
 
