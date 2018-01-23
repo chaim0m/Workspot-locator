@@ -1,0 +1,41 @@
+.search-container {
+  padding-top: 10px;
+}
+
+.checked {
+  color: orange;
+}
+
+.list-item {
+  text-align: right;
+  height: 120px;
+}
+
+.workspot-img {
+  height: 100%;
+}
+
+.img-container {
+  height: 100%;
+}
+
+.workspot-list {
+  margin-top: 20px;
+
+}
+
+.list-container {
+  /* overflow: auto; */
+}
+
+
+.list-container:before {
+  display: table;
+  content: "";
+}
+
+.list-container:after {
+  display: table;
+  content: "";
+  clear: both;
+}

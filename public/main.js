@@ -14,9 +14,15 @@ var WorkspotLocatorApp = function () {
     });
   }
 
+  var presentLocationList = function() {
+    $('#location-list').load('locationListLayout/locationList.html');
+    
+  }
+
   return {
     initMap: initMap,
-    addMarker: addMarker
+    addMarker: addMarker,
+    presentLocationList: presentLocationList
   }
 
 }
@@ -25,3 +31,4 @@ let app = WorkspotLocatorApp();
 let coordinate = { lat: 32.053786, lng: 34.7956447 };//default location for TLV area
 app.initMap(coordinate);
 app.addMarker(coordinate);
+app.presentLocationList();
