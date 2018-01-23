@@ -8,7 +8,7 @@ var ratingSchema = new mongoose.Schema({
     num: Number,
     text: String,
     created_at: Date,
-
+    updated_at:Date,
 });
 
 
@@ -21,6 +21,7 @@ var addressSchema = new mongoose.Schema({
 
 var descriptionSchema = new mongoose.Schema({
     type: String,
+    text: String,
     hours: String,
     websiteLink: String,
     coffeeCupPrice: Number,
