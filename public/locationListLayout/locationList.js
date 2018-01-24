@@ -74,12 +74,10 @@ $('#search-list').on('input', function () {
 
 $('.workspot-list').on('mouseenter', '.list-item', function(){
   var defaultIcon = 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi-dotless_hdpi.png'
- 
   markers[$(this).data().id].setIcon(defaultIcon);
 });
 
 $('.workspot-list').on('mouseleave', '.list-item', function(){
   var defaultIcon = 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi-dotless_hdpi.png'
- 
   markers[$(this).data().id].setIcon('https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png');
 })

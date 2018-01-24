@@ -22,13 +22,7 @@
 
 .workspot-list {
   margin-top: 20px;
-
 }
-
-.list-container {
-  /* overflow: auto; */
-}
-
 
 .list-container:before {
   display: table;
