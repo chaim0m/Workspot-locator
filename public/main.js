@@ -55,7 +55,10 @@ var WorkspotLocatorApp = function () {
     marker.addListener('click', function () {
       console.log(marker.id);
       //TODO: for Roee ):
-     // detailsCallBack(spots[0]);
+        if (detailsCallBack) {
+            detailsCallBack(spot);
+            $('#spot-details-container').fadeIn(250);
+        }
     });
     markers[spot._id] = marker;
   }
@@ -91,6 +94,10 @@ var WorkspotLocatorApp = function () {
 }
 
 let workspot = WorkspotLocatorApp();
+iFrameDetails.onload = function () {
+    console.log("iFrameDetails loaded");
+    workspot.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
+}
 let coordinate = { lat: 32.053786, lng: 34.7956447 };//default location for TLV area
 workspot.initMap(coordinate);
 //app.addMarker(coordinate);
@@ -105,11 +112,15 @@ $('.close-add-post').on('click', function() {
   $('#post-container').fadeOut(250);
 });
 
+$('.close-details-spot').on('click', function() {
+    $('#spot-details-container').fadeOut(250);
+});
 $(document).keyup(function(e) {
   // when clicked esk button
   if (e.keyCode == 27) { 
     $('#post-container').fadeOut(250);
- }
+    $('#spot-details-container').fadeOut(250);
+  }
 });
 
 
