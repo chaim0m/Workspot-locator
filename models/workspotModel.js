@@ -14,8 +14,8 @@ var ratingSchema = new mongoose.Schema({
 
 var addressSchema = new mongoose.Schema({
     text: String,
-    longitude: Number,
-    latitude: Number
+    lng: Number,
+    lat: Number
 });
 
 
@@ -24,6 +24,8 @@ var descriptionSchema = new mongoose.Schema({
     text: String,
     hours: String,
     websiteLink: String,
+    gmapsLink: String,
+    phoneNumber: String,
     coffeeCupPrice: Number,
     hasFood: Boolean,
     mealPriceRange: String,
@@ -35,8 +37,9 @@ var spotSchema = new mongoose.Schema({
     name: {type:String, required:true},
     rating: [ratingSchema],
     address: addressSchema,
-    photo: String,
+    photo: [String],
     description: descriptionSchema,
+    ggl_place_id: String,
     created_at: Date,
     updated_at: Date,
 
