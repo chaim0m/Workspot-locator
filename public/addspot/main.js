@@ -25,36 +25,41 @@ function fillInAddress() {
     console.log(place);
     console.log($('#latitude'));
     $('#name').val(place.name);
-    if (place.photos && place.photos[0]) {
-        $('#photo-link').val(place.photos[0].getUrl({maxWidth:300}))
+    if (place.photos ) {
+        for (i=0; place.photos.length > i && i<=10;i++) {
+            $(`.photo-link:eq(${i})`).val(place.photos[i].getUrl({maxWidth:300}))
+        }
     }
+    $('#ggl_place_id').val(place.place_id);
+    $('#website-link').val(place.website);
+    $('#gmaps-link').val(place.url);
+    $('#phone-number').val(place.international_phone_number);
     // Wi-Fi password info
     // Power plugs availebility
-    // website
-    // url - g maps link
-    // place_id
-    // photos [*.getUrl({maxWidth:300})]
+    //
     // opening_hours
-    // international_phone_number
     // address_components?
     $('#latitude').val(place.geometry.location.lat());
     $('#longitude').val(place.geometry.location.lng());
 }
 
 function buildPostData() {
+    let photosArray = $(".photo-link").map(function () { return $(this).val() }).get();
     return {
         name: $("#name").val(),
         address: {
             text: $("#address").val(),
-            latitude: $("#latitude").val(),
-            longitude: $("#longitude").val()
+            lat: $("#latitude").val(),
+            lng: $("#longitude").val()
         },
         description: {
             // type: String,
             text: $("#description").val(),
+            websiteLink: $("#website-link").val(),
+            gmapsLink: $("#gmaps-link").val(),
+            phoneNumber: $("#phone-number").val(),
 
             // hours: String,
-            // websiteLink: String,
             // coffeeCupPrice: Number,
             // hasFood: Boolean,
             // mealPriceRange: String,
@@ -62,9 +67,10 @@ function buildPostData() {
             // isQuiet: Boolean,
             // isDogFriendly: Boolean,            }
         },
-        photo: $("#photo-link").val(),
+        photo: photosArray,
         //    TODO consider should new place poster should also be able to review it
         rating: [{num: $("#rating").val(), text: $("#review").val()}],
+        ggl_place_id: $("#ggl_place_id").val(),
 
     }
 }
