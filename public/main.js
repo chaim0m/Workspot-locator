@@ -3,6 +3,7 @@ var WorkspotLocatorApp = function () {
   var spots = [];
   var spotsCallBack;
   let renderList;
+  var markers = {};
   var getAllSpotsFromServer = function () {
     $.get({
       url: 'spots',
@@ -11,7 +12,7 @@ var WorkspotLocatorApp = function () {
         spots = data;
         console.log(spots[0].address);
         renderMarkers();
-        spotsCallBack(spots);
+        spotsCallBack(spots, markers);
       },
       error: function (jqXHR, textStatus, errorThrown) {
 
@@ -23,7 +24,8 @@ var WorkspotLocatorApp = function () {
     for(let i=0; i < spots.length; i++) {
      
      // if(isItemInMapBounds(spots[i].address)) {
-        addMarker(spots[i].address);
+        addMarker(spots[i]);
+
       //}
     }
   }
@@ -36,7 +38,8 @@ var WorkspotLocatorApp = function () {
     map.addListener('bounds_changed', function () {
       // _isItemInMapBounds(coordinate);
       // Do what you want here...
-      spotsCallBack(spots);
+      console.log(markers[0]);
+      spotsCallBack(spots, markers);
     });
     google.maps.event.addListenerOnce(map, 'idle', function(){
       // do something only the first time the map is loaded
@@ -45,12 +48,18 @@ var WorkspotLocatorApp = function () {
   }
 
   //adding new marker
-  var addMarker = function (coordinate) {
+  var addMarker = function (spot) {
+
     var marker = new google.maps.Marker({
-      position: coordinate,
-      map: map
+      position: spot.address,
+      map: map,
+      icon: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png',
+      id: spot._id
     });
-    // mapBounds();
+    marker.addListener('click', function() {
+      console.log(marker.id);
+    });
+    markers[spot._id] = marker;
   }
 
   // loading the workspots list
@@ -63,7 +72,6 @@ var WorkspotLocatorApp = function () {
   }
 
  
-
   var isItemInMapBounds = function (coordinate) {
     var bounds = map.getBounds();
     if (bounds.contains(coordinate)) {
