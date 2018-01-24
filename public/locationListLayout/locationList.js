@@ -1,4 +1,5 @@
 let listSpots;
+let markers = {};
 let LocationList = function () {
   let $cards = $('.workspot-list');
 
@@ -10,7 +11,8 @@ let LocationList = function () {
       let obj = {
         name: spots[i].name,
         address: spots[i].address.text,
-        photo: spots[i].photo[0]
+        photo: spots[i].photo[0],
+        id: spots[i]._id
       }
       if (workspot.isItemInMapBounds(spots[i].address)) {
 
@@ -38,8 +40,10 @@ let LocationList = function () {
 let list = LocationList();
 
 // call back for all the spots
-workspot.getSpots(function (spots) {
+workspot.getSpots(function (spots, markersArr) {
   listSpots = spots;
+  markers = markersArr;
+  console.log(markers);
   list.renderCards(spots);
 });
 
@@ -53,3 +57,15 @@ $('#search-list').on('input', function () {
     list.filterSpots('');
   }
 });
+
+$('.workspot-list').on('mouseenter', '.list-item', function(){
+  var defaultIcon = 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi-dotless_hdpi.png'
+ 
+  markers[$(this).data().id].setIcon(defaultIcon);
+});
+
+$('.workspot-list').on('mouseleave', '.list-item', function(){
+  var defaultIcon = 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi-dotless_hdpi.png'
+ 
+  markers[$(this).data().id].setIcon('https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png');
+})
