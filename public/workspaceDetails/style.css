@@ -1,18 +1,18 @@
 #title{
-    color:#FF352F;
+    color:#555555;
     font-family: 'Montserrat', serif;
 }
 
 .container{
-    background-color: #F2F2F2;
-    color: #17232E;
+    background-color: #FFFFFF;
+    color: #555555;
     font-family: 'Open Sans', sans-serif;  
     text-align: center;
 }
 
 
 .rating-star {
-    color:#EBA81F    
+    color:#FFA300    
 }
 
 .fa:hover {

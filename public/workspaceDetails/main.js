@@ -1,7 +1,6 @@
 console.log("window");
 
 let WorkSpostWindow = function () {
-
   var workspotDetails = {};
 
   var workspotId = workspotDetails.id;
