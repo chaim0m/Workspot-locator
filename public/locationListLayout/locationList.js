@@ -22,11 +22,25 @@ let LocationList = function () {
     }
   }
 
+  //ugly code
   var filterSpots = function (text) {
     text = text.toLowerCase();
     let tempSpots = listSpots.filter(function (spot) {
       return spot.name.toLowerCase().startsWith(text) || spot.address.text.toLowerCase().includes(text);
     });
+
+    let toHide = listSpots.filter(function (spot) {
+      return !(spot.name.toLowerCase().startsWith(text) || spot.address.text.toLowerCase().includes(text));
+    });
+
+    for(let i=0; i < toHide.length; i++) {
+      markers[toHide[i]._id].setVisible(false);
+    }
+
+    for(let i=0; i < tempSpots.length; i++) {
+      markers[tempSpots[i]._id].setVisible(true);
+    }
+
     renderCards(tempSpots);
   }
 
