@@ -35,7 +35,7 @@ var spotSchema = new mongoose.Schema({
     name: {type:String, required:true},
     rating: [ratingSchema],
     address: addressSchema,
-    photo: String,
+    photo: String, // TODO consider if we should switch to an array
     description: descriptionSchema,
     created_at: Date,
     updated_at: Date,
