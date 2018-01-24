@@ -39,7 +39,7 @@ html, body {
   margin: 15px;
 }
 
-.add-post-iframe {
+iframe {
   width: 100%;
   height: 100%;
 }
