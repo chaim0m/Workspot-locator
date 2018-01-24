@@ -1,9 +1,11 @@
+console.log("main");
 var WorkspotLocatorApp = function () {
   var map;
   var spots = [];
   var spotsCallBack;
   let renderList;
   var markers = {};
+  let detailsCallBack;
   var getAllSpotsFromServer = function () {
     $.get({
       url: 'spots',
@@ -52,6 +54,8 @@ var WorkspotLocatorApp = function () {
     });
     marker.addListener('click', function () {
       console.log(marker.id);
+      //TODO: for Roee ):
+     // detailsCallBack(spots[0]);
     });
     markers[spot._id] = marker;
   }
@@ -63,6 +67,10 @@ var WorkspotLocatorApp = function () {
 
   var getSpots = function (callback) {
     spotsCallBack = callback;
+  }
+
+  var setDetailsCallBack = function(callback) {
+    detailsCallBack = callback;
   }
 
   var isItemInMapBounds = function (coordinate) {
@@ -77,6 +85,7 @@ var WorkspotLocatorApp = function () {
     getAllSpotsFromServer: getAllSpotsFromServer,
     getSpots: getSpots,
     isItemInMapBounds: isItemInMapBounds,
+    setDetailsCallBack: setDetailsCallBack
   }
 
 }
