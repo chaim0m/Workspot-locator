@@ -1,6 +1,6 @@
+let listSpots;
 let LocationList = function () {
   let $cards = $('.workspot-list');
-
 
   function renderCards(spots) {
     $cards.empty();
@@ -20,18 +20,36 @@ let LocationList = function () {
     }
   }
 
+  var filterSpots = function (text) {
+    text = text.toLowerCase();
+    let tempSpots = listSpots.filter(function (spot) {
+      return spot.name.toLowerCase().startsWith(text) || spot.address.text.toLowerCase().includes(text);
+    });
+    renderCards(tempSpots);
+  }
+
   return {
-    renderCards: renderCards
+    renderCards: renderCards,
+    filterSpots: filterSpots
   }
 
 }
 
 let list = LocationList();
 
+// call back for all the spots
 workspot.getSpots(function (spots) {
+  listSpots = spots;
   list.renderCards(spots);
 });
 
 
-
-//list.renderCards();
+// search the spots when the input-search is changed
+$('#search-list').on('input', function () {
+  var input = $('#search-list').val().trim();
+  if (input != '') {
+    list.filterSpots(input);
+  } else {
+    list.filterSpots('');
+  }
+});
