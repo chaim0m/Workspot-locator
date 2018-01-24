@@ -1,9 +1,14 @@
 
 var workspotDetails = {};
 
+var workspotId = workspotDetails.id;
+console.log(workspotId)
+
+
 $.ajax({
+  
     method: "GET",
-    url:'/spots/getTest',
+    url: "/spots/5a687ff06d36c3f8a80f9dc1",
     success: function(data) {
       console.log(data);
       workspotDetails = data

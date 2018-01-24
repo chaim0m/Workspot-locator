@@ -15,28 +15,26 @@
 <body>
     <div class="container">
         <div class="row">
-                <div class="col-md-4"> 
-                </div>
-                <div class="col-md-4 locdetails"> 
+                <!-- <div class="col-md-4"> 
+                </div> -->
+                <div class="col-md-12 locdetails" data-id="{{id}}"> 
                     <div class="title">
                             <script id="details-template" type="text/x-handlebars-template">
+                                {{#if name}}
                                 <div><h1 id="title">{{name}}</h1>
-
                                 </div> 
                                     <hr />
-                                <div><strong>Adress:</strong> {{address.text}}
-             
+                                {{/if}}
+                                {{#if address}}
+                                <div><strong>Address:</strong> {{address.text}}
                                 </div>
                                     <hr />
-                                 <div class="layoutPhoto">
-                                     <img src={{photo}}>
-                                 </div>
-
-                                 <hr />
-                                 <div class="otherInfo"> <strong>Rating:</strong>
+                                {{/if}}
+                                 <div class="otherInfo" > <strong>Rating:</strong>
                                     {{#each rating}}
-                                     <div>
-                                            <span class="rating-star" data-value="1"><i class="fa fa-star {{#if star_off_1}}-o{{/if}}" aria-hidden="true"></i>
+                                    {{#if num}}
+                                     <div >
+                                            <span class="rating-star" data-value="1"><i class="fa fa-star{{#if star_off_1}}-o{{/if}}" aria-hidden="true"></i>
                                             </span>
                                             <span class="rating-star" data-value="2"><i class="fa fa-star{{#if star_off_2}}-o{{/if}}" aria-hidden="true"></i>
                                             </span>
@@ -48,49 +46,86 @@
                                             </span>
                                             <br>
                                      </div>
+                                     {{/if}}
                                      <div>{{text}}</div>
                                      {{/each}}
-
+                                     </div>
                                      <hr />
-                                     <div class="description">
+                                            {{#if description.hasFood}}
                                          <div>
                                              <strong>Food:</strong> {{description.hasFood}}
                                          </div>
+                                            
                                          <br>
+                                            {{/if}}
+                                            {{#if description.isFree}}
                                          <div>
                                               <strong>Free:</strong>  {{description.isFree}}
-                                         </div>
+                                         </div>                            
                                          <br>
+                                            {{/if}}
+                                            {{#if description.isDogFriendly}}
                                          <div>
                                               <strong>Dog-friendly:</strong>  {{description.isDogFriendly}}
-                                         </div>
+                                         </div>                                             
                                          <br>
+                                            {{/if}} 
+                                            {{#if description.isQuiet}}
                                          <div>
                                               <strong>Quiet:</strong>  {{description.isQuiet}}
                                          </div>
                                          <br>
+                                           {{/if}}
+                                           {{#if description.type}}
                                          <div>
                                               <strong>Type:</strong>  {{description.type}}
                                          </div>
+                                           
                                          <br>
+                                         {{/if}}
+                                         {{#if description.websiteLink}}
+
                                          <div>
                                               <a class="websiteLink" href={{description.websiteLink}} target="_blank"> <strong>Website</strong></a>  
                                          </div>
+                                         
                                          <br>
+                                         {{/if}}
+                                         {{#if description.phoneNumber}}
+
+                                         <div>
+                                                <strong>Phone-number: </strong> {{description.phoneNumber}}  
+                                           </div>
+                                         <br>
+                                         {{/if}}
+                                         {{#if description.hours}}
                                          <div>
                                               <strong>Hours:</strong>  {{description.hours}}
                                          </div> 
                                          <br>
+                                         {{/if}}
+                                         {{#if description.text}}
                                          <div>
                                               <strong>Comment:</strong> {{description.text}}
                                          </div>
+                                     {{/if}} 
+                                     {{#if photo}} 
+                                     <div>                            
+                                         {{#each photo}}
+                                      <span style="display:inline-block" class="thumbnail">
+                                          <img 
+                                           src={{this}}>
+                                      </span>
+                                         {{/each}}
+                                     </div>  
+                                      <hr />
+                                      {{/if}}
+     
+                                     <div>
+                                     <a href="https://www.facebook.com/share" class="fa fa-facebook fa-2x" target="_blank"></a>
+                                     <a href="https://twitter.com/intent/tweet?url=&original_referer=" class="fa fa-twitter fa-2x" target="_blank"></a>
+                                     <a href="https://www.instagram.com/?hl=en" class="fa fa-instagram fa-2x" target="_blank"></a>
                                     </div>
-                                     <hr />
-                                     <div>Share</div>
-                                     <a href="#" class="fa fa-facebook"></a>
-                                     <a href="#" class="fa fa-twitter"></a>
-                                     <a href="#" class="fa fa-google"></a>
-                                     <a href="#" class="fa fa-instagram"></a>
 
 
                  
@@ -101,8 +136,8 @@
     
                 </div>
                 </div>
-                <div class="col-md-4"> 
-                </div>
+                <!-- <div class="col-md-4"> 
+                </div> -->
         </div>
     </div>
     
