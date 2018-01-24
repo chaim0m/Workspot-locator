@@ -20,11 +20,11 @@ var WorkspotLocatorApp = function () {
     });
   }
 
-  var renderMarkers = function() {
-    for(let i=0; i < spots.length; i++) {
-     
-     // if(isItemInMapBounds(spots[i].address)) {
-        addMarker(spots[i]);
+  var renderMarkers = function () {
+    for (let i = 0; i < spots.length; i++) {
+
+      // if(isItemInMapBounds(spots[i].address)) {
+      addMarker(spots[i]);
 
       //}
     }
@@ -41,10 +41,10 @@ var WorkspotLocatorApp = function () {
       console.log(markers[0]);
       spotsCallBack(spots, markers);
     });
-    google.maps.event.addListenerOnce(map, 'idle', function(){
+    google.maps.event.addListenerOnce(map, 'idle', function () {
       // do something only the first time the map is loaded
       getAllSpotsFromServer();
-  });
+    });
   }
 
   //adding new marker
@@ -56,7 +56,7 @@ var WorkspotLocatorApp = function () {
       icon: 'https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png',
       id: spot._id
     });
-    marker.addListener('click', function() {
+    marker.addListener('click', function () {
       console.log(marker.id);
     });
     markers[spot._id] = marker;
@@ -67,11 +67,11 @@ var WorkspotLocatorApp = function () {
     $('#location-list').load('locationListLayout/locationList.html');
   }
 
-  var getSpots = function(callback) {
+  var getSpots = function (callback) {
     spotsCallBack = callback;
   }
 
- 
+
   var isItemInMapBounds = function (coordinate) {
     var bounds = map.getBounds();
     if (bounds.contains(coordinate)) {
@@ -105,13 +105,51 @@ workspot.presentLocationList();
 
 
 
+$('.add-workspot-btn').on('click', function () {
+  console.log("fvfvv");
+   $('#post-container').fadeIn(250);
+  
+});
 
+$('.close-add-post').on('click', function() {
+  $('#post-container').fadeOut(250);
 
+});
 
+$(document).keyup(function(e) {
+  if (e.keyCode == 27) { 
+    $('#post-container').fadeOut(250);
 
+ }
+});
 
-
-
+// $( document ).on( "pagecreate", function() {
+//     // The window width and height are decreased by 30 to take the tolerance of 15 pixels at each side into account
+//     function scale( width, height, padding, border ) {
+//         var scrWidth = $( window ).width() - 30,
+//             scrHeight = $( window ).height() - 30,
+//             ifrPadding = 2 * padding,
+//             ifrBorder = 2 * border,
+//             ifrWidth = width + ifrPadding + ifrBorder,
+//             ifrHeight = height + ifrPadding + ifrBorder,
+//             h, w;
+//         if ( ifrWidth < scrWidth && ifrHeight < scrHeight ) {
+//             w = ifrWidth;
+//             h = ifrHeight;
+//         } else if ( ( ifrWidth / scrWidth ) > ( ifrHeight / scrHeight ) ) {
+//             w = scrWidth;
+//             h = ( scrWidth / ifrWidth ) * ifrHeight;
+//         } else {
+//             h = scrHeight;
+//             w = ( scrHeight / ifrHeight ) * ifrWidth;
+//         }
+//         return {
+//             'width': w - ( ifrPadding + ifrBorder ),
+//             'height': h - ( ifrPadding + ifrBorder )
+//         };
+//     };
+   
+// });
 
 
 
