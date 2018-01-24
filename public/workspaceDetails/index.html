@@ -8,6 +8,8 @@
     <link href="../bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.min.css">
     <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open:400,700" rel="stylesheet">
+    
     <title>Document</title>
 </head>
 <body>
@@ -18,7 +20,7 @@
                 <div class="col-md-4 locdetails"> 
                     <div class="title">
                             <script id="details-template" type="text/x-handlebars-template">
-                                <div><h1>{{name}}</h1>
+                                <div><h1 id="title">{{name}}</h1>
 
                                 </div> 
                                     <hr />
@@ -26,17 +28,15 @@
              
                                 </div>
                                     <hr />
-             
                                  <div class="layoutPhoto">
                                      <img src={{photo}}>
-                 
-                 
                                  </div>
+
                                  <hr />
-                                 <div class="otherInfo">
+                                 <div class="otherInfo"> <strong>Rating:</strong>
                                     {{#each rating}}
                                      <div>
-                                            <span class="rating-star" data-value="1"><i class="fa fa-star{{#if star_off_1}}-o{{/if}}" aria-hidden="true"></i>
+                                            <span class="rating-star" data-value="1"><i class="fa fa-star {{#if star_off_1}}-o{{/if}}" aria-hidden="true"></i>
                                             </span>
                                             <span class="rating-star" data-value="2"><i class="fa fa-star{{#if star_off_2}}-o{{/if}}" aria-hidden="true"></i>
                                             </span>
@@ -74,7 +74,7 @@
                                          </div>
                                          <br>
                                          <div>
-                                              <a href={{description.websiteLink}} target="_blank"> <strong>Website</strong></a>  
+                                              <a class="websiteLink" href={{description.websiteLink}} target="_blank"> <strong>Website</strong></a>  
                                          </div>
                                          <br>
                                          <div>
@@ -85,13 +85,14 @@
                                               <strong>Comment:</strong> {{description.text}}
                                          </div>
                                     </div>
-
-
-
-
-
-
                                      <hr />
+                                     <div>Share</div>
+                                     <a href="#" class="fa fa-facebook"></a>
+                                     <a href="#" class="fa fa-twitter"></a>
+                                     <a href="#" class="fa fa-google"></a>
+                                     <a href="#" class="fa fa-instagram"></a>
+
+
                  
                                  </div>
                               </script>
