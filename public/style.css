@@ -14,7 +14,7 @@ html, body {
   position: fixed;
   bottom: 20px;
   left: 20px;   
-  z-index: 2000; 
+  z-index: 20; 
 }
 
 .container {
@@ -29,7 +29,37 @@ html, body {
   right: 0;
   width: 30%;
   height: 100%;
-  z-index: 2000; 
+  z-index: 25; 
   overflow: auto;
   background: red;
+}
+
+.close-add-post {
+  position: fixed;
+  margin: 15px;
+}
+
+.close-details-spot {
+  position: fixed;
+  margin: 15px;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+}
+#post-container {
+  display: none;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 30;
+}
+#spot-details-container {
+  display: none;
+  padding: 30px;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 30;
 }

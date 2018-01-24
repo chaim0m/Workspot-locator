@@ -17,7 +17,22 @@
 <body>
 
   <div class="container">
+      <div data-role="popup" id="post-container">
+        <a href="#" class="close-add-post">
+          <i class="fa fa-times-circle fa-3x"  aria-hidden="true"></i>
+        </a>
+          <iframe class="add-post-iframe" src="addspot" seamless></iframe>
+      </div>
+
+    <div data-role="popup" id="spot-details-container">
+      <a href="#" class="close-details-spot">
+        <i class="fa fa-times-circle fa-3x"  aria-hidden="true"></i>
+      </a>
+      <iframe class="openWorkSpot" src="workspaceDetails" id="iFrameDetails" seamless></iframe>
+    </div>
+
     <div id="map"></div>
+
     <div id="add-workspot">
       <a class="add-workspot-btn" href="#">
         <i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i>
@@ -26,11 +41,6 @@
     <div id="location-list"></div>
   </div>
   <!-- end of conteiner -->
-
-
-
-
-
 
   <script src="jquery/dist/jquery.js"></script>
   <script src="handlebars/dist/handlebars.js"></script>

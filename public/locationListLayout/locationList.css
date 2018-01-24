@@ -13,6 +13,7 @@
 
 .workspot-img {
   height: 100%;
+  width: 100%;
 }
 
 .img-container {
@@ -21,13 +22,7 @@
 
 .workspot-list {
   margin-top: 20px;
-
 }
-
-.list-container {
-  /* overflow: auto; */
-}
-
 
 .list-container:before {
   display: table;
