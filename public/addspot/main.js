@@ -10,7 +10,8 @@ function setMapLocationSelected(isSelected) {
     $("#next").hide();
     $(".confirm").show();
 }
-
+var marker
+var infowindow
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: -33.8688, lng: 151.2195},
@@ -26,10 +27,10 @@ function initMap() {
     // bounds option in the request.
 //        autocomplete.bindTo('bounds', map);
 
-    var infowindow = new google.maps.InfoWindow();
+    infowindow = new google.maps.InfoWindow();
     var infowindowContent = document.getElementById('infowindow-content');
     infowindow.setContent(infowindowContent);
-    var marker = new google.maps.Marker({
+    marker = new google.maps.Marker({
         map: map,
         anchorPoint: new google.maps.Point(0, -29)
     });
@@ -157,13 +158,16 @@ function buildSpotData() {
 function resetForms() {
     $('#form').find('input, select, textarea').val('');
     $('#form2')[0].reset();
-    infowindow.close();
-    marker.setVisible(false);
+    if (infowindow) {
+        infowindow.close();
+    }
+    if (marker) {
+        marker.setVisible(false);
+    }
     isMapLocationSelected = false;
     $('#form2').hide();
     $('#form').show();
-    $('#map').css("visibility","visible");
-    $('#map').show();
+    $('#map').css("visibility","hidden");
     // $('checkbox').prop('checked', false);
 }
 
