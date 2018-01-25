@@ -1,3 +1,23 @@
+body {
+    background-image: url("../bg-img1.jpg");
+    background-size: cover;
+}
+
+#form2 {
+    display: none;
+}
+
+.container {
+     background: rgba(255, 255, 255, 0.5);
+     margin-top: 40px;
+     transion: background 2s;
+ }
+
+.container:hover {
+    background: rgba(255, 255, 255, 0.7);
+    top:50%;
+}
+
 .form-group {
     display:none;
 }
@@ -75,4 +95,9 @@ html, body {
     font-size: 25px;
     font-weight: 500;
     padding: 6px 12px;
+}
+
+#place-image {
+    display:block;
+    margin: 0 auto;
 }

@@ -37,7 +37,7 @@ function initMap() {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
             window.alert("No details available for input: '" + place.name + "'");
-            return;
+            return false;
         }
 
         fillInAddress();
@@ -63,8 +63,12 @@ function initMap() {
         infowindowContent.children['place-icon'].src = place.icon;
         infowindowContent.children['place-name'].textContent = place.name;
         infowindowContent.children['place-address'].textContent = address;
+        if (place.photos) {
+            infowindowContent.children['place-image'].src = place.photos[0].getUrl({maxWidth: 125});
+        }
         infowindow.open(map, marker);
         initAutocomplete();
+        return true;
     };
     autocomplete.addListener('place_changed', changedFunction);
 }
@@ -104,7 +108,7 @@ function fillInAddress() {
     $('#longitude').val(place.geometry.location.lng());
 }
 
-function buildPostData() {
+function buildSpotData() {
     let photosArray = $(".photo-link").map(function () { return $(this).val() }).get();
     return {
         name: $("#name").val(),
@@ -137,7 +141,13 @@ function buildPostData() {
 }
 
 $("#form").submit(function (event) {
-    if (changedFunction) { changedFunction(); }
+    event.preventDefault();
+    let isValid;
+    // if (changedFunction) { isValid = changedFunction(); }
+
+    if (isValid) {
+        return;
+    }
 
     console.log("Submit Captured!");
     // TODO validateFields();
@@ -151,11 +161,11 @@ $("#form").submit(function (event) {
     // Take into account network and server errors which can cause unexpected results to occur, make sure to catch them
     //
     // If you need to display a different page upon success then JS can certainly handle that
-    var postData = buildPostData();
+    var spotData = buildSpotData();
     $.ajax({
         method: "POST",
         url: '/spots',
-        data: postData,
+        data: spotData,
         success: function (data) {
             console.log("success-", data)
         },
@@ -163,6 +173,44 @@ $("#form").submit(function (event) {
             console.log(textStatus);
         }
     });
-    event.preventDefault();
 });
+
+
+let FormSteps = function() {
+
+    function Step (clearStep, editStep , submitStep) {
+        this.clearStep = clearStep;
+        this.editStep = editStep;
+        this.submitStep = submitStep;
+    }
+
+    // first form step would to type in and select a name or address on the map
+    let first = new Step (
+        // this step is conmpleted after the user select a place from the location text box
+        this.clear = function (){
+
+        }
+        // ths step resets if the user change the text box
+    )
+    // second form step is to show it on the map and request user confirmation or edit for the acutal location
+    // third step would be to ask the user for a description and some extra details on the place
+    // Extra TODO if have time 4th step before submit
+
+
+    let formSteps = [
+
+    ]
+
+
+
+
+
+    return {
+        getCurrentStep: getCurrentStep,
+        nextStep: nextStep,
+        previousStep: previousStep,
+        resetCurrentStep: clearCurrentStep,
+        resetAllStep: resetAllStep
+    }
+}
 
