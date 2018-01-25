@@ -1,39 +1,39 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="../bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../font-awesome/css/font-awesome.min.css">
     <link href="style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Open:400,700" rel="stylesheet">
-    
+
     <title>Document</title>
 </head>
+
 <body>
     <div class="container">
         <div class="row">
-                <!-- <div class="col-md-4"> 
-                </div> -->
-                <div class="col-md-12 locdetails" data-id="{{id}}"> 
-                    <div class="title">
-                            <script id="details-template" type="text/x-handlebars-template">
+            <div class="col-md-12 locdetails" data-id="{{id}}">
+                <div class="title">
+                    <script id="details-template" type="text/x-handlebars-template">
                                 {{#if name}}
                                 <div><h1 id="title">{{name}}</h1>
                                 </div> 
                                     <hr />
                                 {{/if}}
                                 {{#if address}}
-                                <div><strong>Address:</strong> {{address.text}}
+                                <div><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i>
+                                    <a href="https://www.google.co.il/maps/place/{{address.text}}" target="_blank"> {{address.text}}</a>
                                 </div>
-                                    <hr />
+                                <div><br></div>
                                 {{/if}}
-                                 <div class="otherInfo" > <strong>Rating:</strong>
+                                 <div class="otherInfo"> 
                                     {{#each rating}}
                                     {{#if num}}
-                                     <div >
+                                     <div > <strong>Rating:</strong>
                                             <span class="rating-star" data-value="1"><i class="fa fa-star{{#if star_off_1}}-o{{/if}}" aria-hidden="true"></i>
                                             </span>
                                             <span class="rating-star" data-value="2"><i class="fa fa-star{{#if star_off_2}}-o{{/if}}" aria-hidden="true"></i>
@@ -50,7 +50,6 @@
                                      <div>{{text}}</div>
                                      {{/each}}
                                      </div>
-                                     <hr />
                                             {{#if description.hasFood}}
                                          <div>
                                              <strong>Food:</strong> {{description.hasFood}}
@@ -83,24 +82,27 @@
                                            
                                          <br>
                                          {{/if}}
+                                         {{#if description.phoneNumber}}
+
+                                         <div>
+                                            <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
+                                            <a href="tel://{{description.phoneNumber}}" target="_blank">{{description.phoneNumber}}</a> 
+                                           </div>
+                                         <br>
+                                         {{/if}}
                                          {{#if description.websiteLink}}
 
                                          <div>
-                                              <a class="websiteLink" href={{description.websiteLink}} target="_blank"> <strong>Website</strong></a>  
+                                            <i class="fa fa-globe fa-2x" aria-hidden="true"></i>
+                                            <a class="websiteLink" href={{description.websiteLink}} target="_blank"> <strong>{{description.websiteLink}}</strong></a>  
                                          </div>
                                          
                                          <br>
                                          {{/if}}
-                                         {{#if description.phoneNumber}}
-
-                                         <div>
-                                                <strong>Phone-number: </strong> {{description.phoneNumber}}  
-                                           </div>
-                                         <br>
-                                         {{/if}}
                                          {{#if description.hours}}
                                          <div>
-                                              <strong>Hours:</strong>  {{description.hours}}
+                                            <i class="fa fa-clock-o fa-2x" aria-hidden="true"></i>
+                                            {{description.hours}}
                                          </div> 
                                          <br>
                                          {{/if}}
@@ -112,36 +114,43 @@
                                      {{#if photo}} 
                                      <div>                            
                                          {{#each photo}}
+                                    <a class="biggerImg" href="{{this}}" target="_blank">
                                       <span style="display:inline-block" class="thumbnail">
-                                          <img 
-                                           src={{this}}>
+                                         <img src={{this}}>
                                       </span>
+                                    </a>
                                          {{/each}}
                                      </div>  
-                                      <hr />
                                       {{/if}}
      
                                      <div>
-                                     <a href="https://www.facebook.com/share" class="fa fa-facebook fa-2x" target="_blank"></a>
-                                     <a href="https://twitter.com/intent/tweet" class="fa fa-twitter fa-2x" target="_blank"></a>
-                                     <a href="https://www.instagram.com/?hl=en" class="fa fa-instagram fa-2x" target="_blank"></a>
+                                     <a href="https://www.facebook.com/share" target="_blank"><i class="fa fa-facebook-square" style="font-size:48px"></i>
+                                     </a>
+                                     <a href="https://twitter.com/intent/tweet" target="_blank"><i class="fa fa-twitter-square" style="font-size:48px"></i>
+                                     </a>
+                                     <a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus-square" style="font-size:48px"></i></a>
+
+                                     <a href="https://www.linkedin.com/" target="_blank"><i class="fa fa-linkedin-square" style="font-size:48px"></i></a>
+
+
+
                                     </div>
+                                    
+
 
 
                  
                                  </div>
                               </script>
-                              <div class="workspot_details"></div>
+                    <div class="workspot_details"></div>
 
-    
+
                 </div>
-                </div>
-                <!-- <div class="col-md-4"> 
-                </div> -->
+            </div>
         </div>
     </div>
-    
-    
+
+
 
     <script src="../jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="../bootstrap/dist/js/bootstrap.min.js"></script>
