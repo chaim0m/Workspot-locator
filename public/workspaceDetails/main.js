@@ -1,7 +1,6 @@
 console.log("window");
 
 let WorkSpostWindow = function () {
-
   var workspotDetails = {};
 
   var workspotId = workspotDetails.id;
@@ -29,7 +28,7 @@ let WorkSpostWindow = function () {
       var newHTML = template(workspotDetails);
 
       $('.workspot_details').html(newHTML);
-   
+
   }
   return {
     openDetails: openDetails
