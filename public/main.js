@@ -6,6 +6,7 @@ var WorkspotLocatorApp = function () {
   let renderList;
   var markers = {};
   let detailsCallBack;
+  //let addSpotCallBack;
   var getAllSpotsFromServer = function () {
     $.get({
       url: 'spots',
@@ -20,6 +21,11 @@ var WorkspotLocatorApp = function () {
 
       }
     });
+  }
+
+  var addSpot = function(spot) {
+    spots.push(spot);
+    renderMarkers();
   }
 
   var renderMarkers = function () {
@@ -54,7 +60,6 @@ var WorkspotLocatorApp = function () {
     });
     marker.addListener('click', function () {
       console.log(marker.id);
-      //TODO: for Roee ):
         if (detailsCallBack) {
             detailsCallBack(spot);
             $('#spot-details-container').fadeIn(250);
