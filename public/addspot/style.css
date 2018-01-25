@@ -4,6 +4,8 @@ body {
     background-attachment: fixed;
 }
 
+
+
 #form2 {
     display: none;
 }
@@ -14,7 +16,7 @@ body {
      transion: background 2s;
  }
 
-.container:hover {
+.container:first-child:hover {
     background: rgba(255, 255, 255, 0.7);
     top:50%;
 }
@@ -25,7 +27,11 @@ body {
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-    height: 70%;
+    height: 55%;
+    /*margin: 30px;*/
+    /*padding:15px;*/
+    /*background: rgba(255, 255, 255, 0.5);*/
+    /*margin-top: 40px;*/
     visibility: hidden;
 }
 /* Optional: Makes the sample page fill the window. */
@@ -51,6 +57,8 @@ html, body {
 #map #infowindow-content {
     display: inline;
 }
+
+
 
 .pac-card {
     margin: 10px 10px 0 0;

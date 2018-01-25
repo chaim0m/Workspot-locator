@@ -1,7 +1,15 @@
-
+var isMapLocationSelected = false;
+var isPlaceDescriptionEntered = false;
 
 var autocomplete;
 var changedFunction
+
+function setMapLocationSelected(isSelected) {
+    isMapLocationSelected = true;
+    console.log("isMapLocationSelected");
+    $("#next").hide();
+    $(".confirm").show();
+}
 
 function initMap() {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -39,6 +47,8 @@ function initMap() {
             window.alert("No details available for input: '" + place.name + "'");
             return false;
         }
+
+        setMapLocationSelected(true);
 
         fillInAddress();
         // If the place has a geometry, then present it on a map.
@@ -145,17 +155,38 @@ function buildSpotData() {
 }
 
 function resetForms() {
-    $('#form').find('input, select, textarea').not("#address").val('');
-    $('#form2').find('input, select, textarea').not("#address").val('');
+    $('#form').find('input, select, textarea').val('');
+    $('#form2')[0].reset();
+    infowindow.close();
+    marker.setVisible(false);
+    isMapLocationSelected = false;
+    $('#form2').hide();
+    $('#form').show();
+    $('#map').css("visibility","visible");
+    $('#map').show();
+    // $('checkbox').prop('checked', false);
+}
+
+function goToPlaceDescription() {
+    $('#map').fadeOut()
+    $('#form').fadeOut();
+    $('#form2').fadeIn();
+;
+
 }
 
 $("#form").submit(function (event) {
     event.preventDefault();
-    let isValid;
     // if (changedFunction) { isValid = changedFunction(); }
+        if(!isMapLocationSelected) {return}
+        goToPlaceDescription();
+});
 
-    if (isValid) {
-        return;
+$("#form2").submit(function (event) {
+    event.preventDefault();
+    if(!isMapLocationSelected) {return}
+    if(!isPlaceDescriptionEntered) {
+        goToPlaceDescription();
     }
 
     console.log("Submit Captured!");
@@ -188,3 +219,4 @@ $("#form").submit(function (event) {
     });
 });
 
+resetForms();
