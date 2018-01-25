@@ -41,7 +41,6 @@ var WorkspotLocatorApp = function () {
     });
     map.addListener('bounds_changed', function () {
       // Do what you want here...
-      console.log(markers[0]);
       spotsCallBack(spots, markers);
     });
     google.maps.event.addListenerOnce(map, 'idle', function () {
@@ -59,11 +58,30 @@ var WorkspotLocatorApp = function () {
       id: spot._id
     });
     marker.addListener('click', function () {
-      console.log(marker.id);
         if (detailsCallBack) {
             detailsCallBack(spot);
             $('#spot-details-container').fadeIn(250);
         }
+    });
+    var infowindowContent = document.getElementById('infowindow-container');
+    var infowindow = new google.maps.InfoWindow({
+      content: infowindowContent,
+      maxWidth: 250,
+      maxHeight: 300
+    });
+
+    marker.addListener('mouseover', function () {
+      let place = spots.find(function(spot) {
+        return spot._id == marker.id;
+      });
+      infowindowContent.children['infowindow-image'].src = place.photo[0];
+      infowindowContent.children['infowindow-name'].textContent = place.name;
+      infowindowContent.children['infowindow-address'].textContent = place.address.text;
+      infowindow.open(map, this);
+    });
+
+    marker.addListener('mouseout', function () {
+      infowindow.close();
     });
     markers[spot._id] = marker;
   }

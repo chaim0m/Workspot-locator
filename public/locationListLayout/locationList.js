@@ -1,5 +1,7 @@
-let listSpots;
+let listSpots = {};
 let markers = {};
+let detailsCallBack;
+let listSpotsMap;
 let LocationList = function () {
   let $cards = $('.workspot-list');
 
@@ -43,25 +45,39 @@ let LocationList = function () {
 
     renderCards(tempSpots);
   }
-
+  var setDetailsCallBack = function (callback) {
+    detailsCallBack = callback;
+  }
   return {
     renderCards: renderCards,
-    filterSpots: filterSpots
+    filterSpots: filterSpots,
+    setDetailsCallBack: setDetailsCallBack,
+    detailsCallBack: detailsCallBack
   }
 
 }
 
 let list = LocationList();
+const arrayToObject = (array) =>
+   array.reduce((obj, item) => {
+     obj[item._id] = item
+     return obj
+   }, {});
 
 // call back for all the spots
 workspot.getSpots(function (spots, markersArr) {
   listSpots = spots;
   markers = markersArr;
-  console.log(markers);
+  listSpotsMap = arrayToObject(spots)
   list.renderCards(spots);
 });
 
-
+var old = iFrameDetails.onload;
+iFrameDetails.onload = function () {
+  console.log("iFrameDetails loaded");
+  if(old) { old(); }
+  list.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
+}
 // search the spots when the input-search is changed
 $('#search-list').on('input', function () {
   var input = $('#search-list').val().trim();
@@ -81,3 +97,18 @@ $('.workspot-list').on('mouseleave', '.list-item', function(){
   var defaultIcon = 'https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi-dotless_hdpi.png'
   markers[$(this).data().id].setIcon('https://raw.githubusercontent.com/Concept211/Google-Maps-Markers/master/images/marker_red.png');
 })
+
+$('.workspot-list').on('click', '.list-item', function(){
+  if (detailsCallBack) {
+    detailsCallBack(listSpotsMap[$(this).data().id]);
+    $('#spot-details-container').fadeIn(250);
+  }
+})
+
+
+
+
+
+
+
+

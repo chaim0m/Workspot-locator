@@ -166,7 +166,7 @@ $("#form").submit(function (event) {
     //
     // If you need to display a different page upon success then JS can certainly handle that
     var spotData = buildSpotData();
-    let addSpot = parent.workspot.addSpot;
+    var addSpot = parent.workspot.addSpot;
     $.ajax({
         method: "POST",
         url: '/spots',
