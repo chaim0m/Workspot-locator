@@ -174,6 +174,7 @@ $("#form").submit(function (event) {
         success: function (data) {
             addSpot(data);
             console.log("success-", data)
+            $(window.parent.document.getElementById('post-container')).fadeOut(250);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus);
