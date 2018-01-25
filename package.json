@@ -26,6 +26,7 @@
     "jquery": "^3.2.1",
     "lightbox2": "^2.10.0",
     "mongoose": "^4.10.7",
-    "nodemon": "^1.14.11"
+    "nodemon": "^1.14.11",
+    "simplelightbox": "^1.12.0"
   }
 }
