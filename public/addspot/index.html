@@ -127,27 +127,81 @@
             </div>
         </div>
     </form>
-    <form id="form2" class="form-horizontal">
+    <form id="form2" class="form-horizontal show text-left">
         Step 2
-        <div class="form-group">
-            <label class="control-label col-sm-2" for="description">Spot Description:</label>
-            <div class="col-sm-10">
-                <textarea class="form-control" rows="3" id="description"></textarea>
-            </div>
-        </div>
-
 
         <div class="form-group">
-            <label class="control-label col-sm-4" for="name">Spot Name</label>
+            <label class="control-label col-sm-5" for="name">Spot Name</label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" id="name" placeholder="WeWork Hazerem - Tel Aviv" name="name">
             </div>
         </div>
 
         <div class="form-group">
+            <label class="control-label col-sm-5" for="description">Spot Description:</label><br>
+            <div class="col-sm-10">
+                <textarea class="form-control" rows="3" id="description"></textarea>
+            </div>
+        </div>
+
+        <!--coffeeCupPrice: Number,-->
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="name">Coffee Cup Price</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="coffeeCupPrice" placeholder="Basic Coffee Price" name="name">
+            </div>
+        </div>
+
+        <!--mealPriceRange: String,-->
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="name">Average meal Price</label>
+            <div class="col-sm-10">
+                <input type="number" class="form-control" id="mealPriceRange" placeholder="Average meal Price" name="name">
+            </div>
+        </div>
+
+
+
+
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <div class="checkbox">
-                    <label><input type="checkbox" name="remember"> Remember me</label>
+                    <label><input id="isPower" type="checkbox" name="remember">Has enough power plugs?</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input id="isGoodInterner" type="checkbox" name="remember">Has good Internet?</label>
+                </div>
+            </div>
+        </div>
+
+        <!--isFree: Boolean,-->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input id="isFree" type="checkbox" name="remember">Is It Free ?</label>
+                </div>
+            </div>
+        </div>
+
+        <!--isQuiet: Boolean,-->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input id="isQuiet" type="checkbox" name="remember"> Is Quiet</label>
+                </div>
+            </div>
+        </div>
+
+        <!--isDogFriendly: Boolean,-->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label><input id="isDogFriendly" type="checkbox" name="remember"> is Dog Friendly</label>
                 </div>
             </div>
         </div>
@@ -160,19 +214,9 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="remember"> Remember me</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <div class="checkbox">
-                    <label><input type="checkbox" name="remember"> Remember me</label>
-                </div>
+        <div class="form-group show">
+            <div class="col-sm-offset-7 col-sm-10">
+                <button type="submit" class="btn btn-default">Add The Place!</button>
             </div>
         </div>
 
@@ -180,6 +224,7 @@
 
     </form>
 </div>
+<!-- end of conteiner -->
 
 <div id="map"></div>
 

@@ -1,6 +1,7 @@
 body {
     background-image: url("../bg-img1.jpg");
     background-size: cover;
+    background-attachment: fixed;
 }
 
 #form2 {
@@ -18,7 +19,7 @@ body {
     top:50%;
 }
 
-.form-group {
+#form .form-group {
     display:none;
 }
 /* Always set the map height explicitly to define the size of the div

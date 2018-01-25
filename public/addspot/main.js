@@ -123,6 +123,12 @@ function buildSpotData() {
             websiteLink: $("#website-link").val(),
             gmapsLink: $("#gmaps-link").val(),
             phoneNumber: $("#phone-number").val(),
+            ggl_place_id: $("#ggl_place_id").val(),
+            coffeeCupPrice: $('#coffeeCupPrice').val(),
+            mealPriceRange: $('#mealPriceRange').val(),
+            isFree: $('#isFree').val(),
+            isQuiet: $('#isQuiet').val(),
+            isDogFriendly: $('#isDogFriendly').val(),
 
             // hours: String,
             // coffeeCupPrice: Number,
@@ -134,9 +140,7 @@ function buildSpotData() {
         },
         photo: photosArray,
         //    TODO consider should new place poster should also be able to review it
-        rating: [{num: $("#rating").val(), text: $("#review").val()}],
-        ggl_place_id: $("#ggl_place_id").val(),
-
+        // rating: [{num: $("#rating").val(), text: $("#review").val()}],
     }
 }
 
@@ -167,6 +171,7 @@ $("#form").submit(function (event) {
         url: '/spots',
         data: spotData,
         success: function (data) {
+
             console.log("success-", data)
         },
         error: function (jqXHR, textStatus, errorThrown) {
