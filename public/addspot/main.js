@@ -144,6 +144,11 @@ function buildSpotData() {
     }
 }
 
+function resetForms() {
+    $('#form').find('input, select, textarea').not("#address").val('');
+    $('#form2').find('input, select, textarea').not("#address").val('');
+}
+
 $("#form").submit(function (event) {
     event.preventDefault();
     let isValid;
@@ -173,7 +178,8 @@ $("#form").submit(function (event) {
         data: spotData,
         success: function (data) {
             addSpot(data);
-            console.log("success-", data)
+            console.log("success-", data);
+            resetForms();
             $(window.parent.document.getElementById('post-container')).fadeOut(250);
         },
         error: function (jqXHR, textStatus, errorThrown) {
