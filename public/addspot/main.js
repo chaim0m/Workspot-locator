@@ -37,7 +37,7 @@ function initMap() {
             // User entered the name of a Place that was not suggested and
             // pressed the Enter key, or the Place Details request failed.
             window.alert("No details available for input: '" + place.name + "'");
-            return;
+            return false;
         }
 
         fillInAddress();
@@ -63,8 +63,12 @@ function initMap() {
         infowindowContent.children['place-icon'].src = place.icon;
         infowindowContent.children['place-name'].textContent = place.name;
         infowindowContent.children['place-address'].textContent = address;
+        if (place.photos) {
+            infowindowContent.children['place-image'].src = place.photos[0].getUrl({maxWidth: 125});
+        }
         infowindow.open(map, marker);
         initAutocomplete();
+        return true;
     };
     autocomplete.addListener('place_changed', changedFunction);
 }
@@ -104,7 +108,7 @@ function fillInAddress() {
     $('#longitude').val(place.geometry.location.lng());
 }
 
-function buildPostData() {
+function buildSpotData() {
     let photosArray = $(".photo-link").map(function () { return $(this).val() }).get();
     return {
         name: $("#name").val(),
@@ -119,6 +123,12 @@ function buildPostData() {
             websiteLink: $("#website-link").val(),
             gmapsLink: $("#gmaps-link").val(),
             phoneNumber: $("#phone-number").val(),
+            ggl_place_id: $("#ggl_place_id").val(),
+            coffeeCupPrice: $('#coffeeCupPrice').val(),
+            mealPriceRange: $('#mealPriceRange').val(),
+            isFree: $('#isFree').val(),
+            isQuiet: $('#isQuiet').val(),
+            isDogFriendly: $('#isDogFriendly').val(),
 
             // hours: String,
             // coffeeCupPrice: Number,
@@ -130,14 +140,18 @@ function buildPostData() {
         },
         photo: photosArray,
         //    TODO consider should new place poster should also be able to review it
-        rating: [{num: $("#rating").val(), text: $("#review").val()}],
-        ggl_place_id: $("#ggl_place_id").val(),
-
+        // rating: [{num: $("#rating").val(), text: $("#review").val()}],
     }
 }
 
 $("#form").submit(function (event) {
-    if (changedFunction) { changedFunction(); }
+    event.preventDefault();
+    let isValid;
+    // if (changedFunction) { isValid = changedFunction(); }
+
+    if (isValid) {
+        return;
+    }
 
     console.log("Submit Captured!");
     // TODO validateFields();
@@ -151,18 +165,19 @@ $("#form").submit(function (event) {
     // Take into account network and server errors which can cause unexpected results to occur, make sure to catch them
     //
     // If you need to display a different page upon success then JS can certainly handle that
-    var postData = buildPostData();
+    var spotData = buildSpotData();
+    let addSpot = parent.workspot.addSpot;
     $.ajax({
         method: "POST",
         url: '/spots',
-        data: postData,
+        data: spotData,
         success: function (data) {
+            addSpot(data);
             console.log("success-", data)
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log(textStatus);
         }
     });
-    event.preventDefault();
 });
 

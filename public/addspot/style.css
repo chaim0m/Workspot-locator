@@ -1,4 +1,25 @@
-.form-group {
+body {
+    background-image: url("../bg-img1.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+#form2 {
+    display: none;
+}
+
+.container {
+     background: rgba(255, 255, 255, 0.5);
+     margin-top: 40px;
+     transion: background 2s;
+ }
+
+.container:hover {
+    background: rgba(255, 255, 255, 0.7);
+    top:50%;
+}
+
+#form .form-group {
     display:none;
 }
 /* Always set the map height explicitly to define the size of the div
@@ -75,4 +96,9 @@ html, body {
     font-size: 25px;
     font-weight: 500;
     padding: 6px 12px;
+}
+
+#place-image {
+    display:block;
+    margin: 0 auto;
 }

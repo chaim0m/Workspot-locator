@@ -89,6 +89,7 @@ var WorkspotLocatorApp = function () {
   return {
     initMap: initMap,
     addMarker: addMarker,
+    addSpot: addSpot,
     presentLocationList: presentLocationList,
     getAllSpotsFromServer: getAllSpotsFromServer,
     getSpots: getSpots,
@@ -98,7 +99,7 @@ var WorkspotLocatorApp = function () {
 
 }
 
-let workspot = WorkspotLocatorApp();
+var workspot = WorkspotLocatorApp();
 iFrameDetails.onload = function () {
     console.log("iFrameDetails loaded");
     workspot.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
