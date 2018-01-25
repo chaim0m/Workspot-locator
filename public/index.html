@@ -5,49 +5,55 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
   <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css">
   <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-
   <link href="style.css" rel="stylesheet">
   <link rel="stylesheet" href="locationListLayout/locationList.css">
 
-  <title>Document</title>
+  <title>WorkSpot Locator</title>
 </head>
 
 <body>
-    <div id="location-list"></div>
-    <div id="infowindow-container">
-        <span id="infowindow-name"  class="title"></span>
-        <br>
-        <span id="infowindow-address"></span> <br> <br>
-        <img id="infowindow-image" src="">
-    </div>
+    <nav class="navbar navbar-default navbar-fixed-top header">
+       
+        <p class="navbar-text h3">Work Spot Locator</p>
+      </nav>
 
-
+  <div id="location-list"></div>
+  <div id="infowindow-container">
+    <span id="infowindow-name" class="title"></span>
+    <br>
+    <span id="infowindow-address"></span>
+    <br>
+    <br>
+    <img id="infowindow-image" src="">
+  </div>
 
   <div class="container">
-      <div data-role="popup" id="post-container">
-        <a href="#" class="close-add-post">
-          <i class="fa fa-times-circle fa-3x"  aria-hidden="true"></i>
-        </a>
-          <iframe id="addPostIframe" class="add-post-iframe" src="addspot" seamless></iframe>
-      </div>
+    <div data-role="popup" id="post-container">
+      <a href="#" class="close-add-post">
+        <i class="fa fa-times-circle fa-3x" aria-hidden="true"></i>
+      </a>
+      <iframe id="addPostIframe" class="add-post-iframe" src="addspot" seamless></iframe>
+    </div>
 
     <div data-role="popup" id="spot-details-container">
       <a href="#" class="close-details-spot">
-        <i class="fa fa-times-circle fa-3x"  aria-hidden="true"></i>
+        <i class="fa fa-times-circle fa-3x" aria-hidden="true"></i>
       </a>
       <iframe class="openWorkSpot" src="workspaceDetails" id="iFrameDetails" seamless></iframe>
     </div>
-
+<div id="map-container">
     <div id="map"></div>
+  </div>
 
     <div id="add-workspot">
       <a class="add-workspot-btn" href="#">
         <i class="fa fa-plus-circle fa-5x" aria-hidden="true"></i>
       </a>
-    </div><!-- end of add workspot -->
-
+    </div>
+    <!-- end of add workspot -->
   </div>
   <!-- end of conteiner -->
 

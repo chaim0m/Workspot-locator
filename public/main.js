@@ -22,7 +22,7 @@ var WorkspotLocatorApp = function () {
     });
   }
 
-  var addSpot = function(spot) {
+  var addSpot = function (spot) {
     spots.push(spot);
     spotsCallBack(spots, markers);
     renderMarkers();
@@ -58,10 +58,10 @@ var WorkspotLocatorApp = function () {
       id: spot._id
     });
     marker.addListener('click', function () {
-        if (detailsCallBack) {
-            detailsCallBack(spot);
-            $('#spot-details-container').fadeIn(250);
-        }
+      if (detailsCallBack) {
+        detailsCallBack(spot);
+        $('#spot-details-container').fadeIn(250);
+      }
     });
     var infowindowContent = document.getElementById('infowindow-container');
     var infowindow = new google.maps.InfoWindow({
@@ -71,7 +71,7 @@ var WorkspotLocatorApp = function () {
     });
 
     marker.addListener('mouseover', function () {
-      let place = spots.find(function(spot) {
+      let place = spots.find(function (spot) {
         return spot._id == marker.id;
       });
       infowindowContent.children['infowindow-image'].src = place.photo[0];
@@ -95,7 +95,7 @@ var WorkspotLocatorApp = function () {
     spotsCallBack = callback;
   }
 
-  var setDetailsCallBack = function(callback) {
+  var setDetailsCallBack = function (callback) {
     detailsCallBack = callback;
   }
 
@@ -119,32 +119,29 @@ var WorkspotLocatorApp = function () {
 
 var workspot = WorkspotLocatorApp();
 iFrameDetails.onload = function () {
-    console.log("iFrameDetails loaded");
-    workspot.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
+  console.log("iFrameDetails loaded");
+  workspot.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
 }
 let coordinate = { lat: 32.053786, lng: 34.7956447 };//default location for TLV area
 workspot.initMap(coordinate);
-//app.addMarker(coordinate);
 workspot.presentLocationList();
-//app.getAllSpots();
 
 $('.add-workspot-btn').on('click', function () {
   $('#post-container').fadeIn(250);
 });
 
-$('.close-add-post').on('click', function() {
+$('.close-add-post').on('click', function () {
   $('#post-container').fadeOut(250);
 });
 
-$('.close-details-spot').on('click', function() {
-    $('#spot-details-container').fadeOut(250);
+$('.close-details-spot').on('click', function () {
+  $('#spot-details-container').fadeOut(250);
 });
-$(document).keyup(function(e) {
+$(document).keyup(function (e) {
   // when clicked esk button
-  if (e.keyCode == 27) { 
+  if (e.keyCode == 27) {
     $('#post-container').fadeOut(250);
     $('#spot-details-container').fadeOut(250);
-
     //addPostIframe.contentWindow.workWindow.resetForms();
   }
 });
