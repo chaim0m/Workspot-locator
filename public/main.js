@@ -13,7 +13,6 @@ var WorkspotLocatorApp = function () {
       dataType: "json",
       success: function (data) {
         spots = data;
-        console.log(spots[0].address);
         renderMarkers();
         spotsCallBack(spots, markers);
       },
@@ -25,6 +24,7 @@ var WorkspotLocatorApp = function () {
 
   var addSpot = function(spot) {
     spots.push(spot);
+    spotsCallBack(spots, markers);
     renderMarkers();
   }
 
