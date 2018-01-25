@@ -63,3 +63,39 @@ iframe {
   position: fixed;
   z-index: 30;
 }
+
+#infowindow-container {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  display: none;  
+}
+
+#infowindow-image {
+  width: 100% !important;
+  height: 100% !important;
+}
+/* hide the close btn of info window */
+.gm-style-iw + div {display: none;}
+.gm-style-iw{
+  max-height: 250px;
+  text-align: center;
+}
+
+.gm-style-iw img {
+  width: 100%;
+  height: 100%;
+}
+
+#infowindow-address {
+  text-align: center !important;
+}
+
+.title {
+  font-weight: bold;
+  text-align: center;
+}
+
+#map #infowindow-container {
+  display: inline;
+}

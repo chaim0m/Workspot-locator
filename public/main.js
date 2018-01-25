@@ -23,7 +23,7 @@ var WorkspotLocatorApp = function () {
     });
   }
 
-  var addSpot = function(spot) {
+  var addSpot = function (spot) {
     spots.push(spot);
     renderMarkers();
   }
@@ -39,14 +39,15 @@ var WorkspotLocatorApp = function () {
       zoom: 11,
       center: coordinate,
     });
+   
     map.addListener('bounds_changed', function () {
       // Do what you want here...
-      console.log(markers[0]);
       spotsCallBack(spots, markers);
     });
     google.maps.event.addListenerOnce(map, 'idle', function () {
       // do something only the first time the map is loaded
       getAllSpotsFromServer();
+     //presentLocationList();
     });
   }
 
@@ -59,25 +60,46 @@ var WorkspotLocatorApp = function () {
       id: spot._id
     });
     marker.addListener('click', function () {
-      console.log(marker.id);
-        if (detailsCallBack) {
-            detailsCallBack(spot);
-            $('#spot-details-container').fadeIn(250);
-        }
+      if (detailsCallBack) {
+        detailsCallBack(spot);
+        $('#spot-details-container').fadeIn(250);
+      }
+    });
+    var infowindowContent = document.getElementById('infowindow-container');
+    var infowindow = new google.maps.InfoWindow({
+      content: infowindowContent,
+      maxWidth: 250,
+      maxHeight: 300
+    });
+
+    marker.addListener('mouseover', function () {
+      let place = spots.find(function(spot) {
+        return spot._id == marker.id;
+      });
+      infowindowContent.children['infowindow-image'].src = place.photo[0];
+      infowindowContent.children['infowindow-name'].textContent = place.name;
+      infowindowContent.children['infowindow-address'].textContent = place.address.text;
+      infowindow.open(map, this);
+    });
+
+    marker.addListener('mouseout', function () {
+      infowindow.close();
     });
     markers[spot._id] = marker;
   }
 
   // loading the workspots list
   var presentLocationList = function () {
+    console.log("list layout");
     $('#location-list').load('locationListLayout/locationList.html');
   }
 
   var getSpots = function (callback) {
+    console.log("call back");
     spotsCallBack = callback;
   }
 
-  var setDetailsCallBack = function(callback) {
+  var setDetailsCallBack = function (callback) {
     detailsCallBack = callback;
   }
 
@@ -100,29 +122,33 @@ var WorkspotLocatorApp = function () {
 
 let workspot = WorkspotLocatorApp();
 iFrameDetails.onload = function () {
-    console.log("iFrameDetails loaded");
-    workspot.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
+  console.log("iFrameDetails loaded");
+  workspot.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
 }
 let coordinate = { lat: 32.053786, lng: 34.7956447 };//default location for TLV area
 workspot.initMap(coordinate);
 //app.addMarker(coordinate);
+
+
 workspot.presentLocationList();
+
+
 //app.getAllSpots();
 
 $('.add-workspot-btn').on('click', function () {
   $('#post-container').fadeIn(250);
 });
 
-$('.close-add-post').on('click', function() {
+$('.close-add-post').on('click', function () {
   $('#post-container').fadeOut(250);
 });
 
-$('.close-details-spot').on('click', function() {
-    $('#spot-details-container').fadeOut(250);
+$('.close-details-spot').on('click', function () {
+  $('#spot-details-container').fadeOut(250);
 });
-$(document).keyup(function(e) {
+$(document).keyup(function (e) {
   // when clicked esk button
-  if (e.keyCode == 27) { 
+  if (e.keyCode == 27) {
     $('#post-container').fadeOut(250);
     $('#spot-details-container').fadeOut(250);
   }
