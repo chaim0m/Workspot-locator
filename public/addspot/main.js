@@ -145,8 +145,8 @@ function buildSpotData() {
 }
 
 function resetForms() {
-    $('#form').find('input, select, textarea').not("#address").val('');
-    $('#form2').find('input, select, textarea').not("#address").val('');
+    $('#form').find('input, select, textarea').val('');
+    $('#form2').find('input, select, textarea').val('');
 }
 
 $("#form").submit(function (event) {
