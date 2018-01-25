@@ -146,7 +146,8 @@ function buildSpotData() {
 
 function resetForms() {
     $('#form').find('input, select, textarea').val('');
-    $('#form2').find('input, select, textarea').val('');
+    $('#form2')[0].reset();
+    // $('checkbox').prop('checked', false);
 }
 
 $("#form").submit(function (event) {
