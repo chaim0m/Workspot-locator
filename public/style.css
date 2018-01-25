@@ -31,7 +31,8 @@ html, body {
   height: 100%;
   z-index: 25; 
   overflow: auto;
-  background: red;
+  background: rgb(214, 210, 210);
+  overflow-x: hidden;
 }
 
 .close-add-post {

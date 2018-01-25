@@ -105,8 +105,14 @@ $('.workspot-list').on('click', '.list-item', function(){
   }
 })
 
+$('#filter-options').change(function() {
+console.log($(this).find(":selected").val());
+});
 
-
+$('.selectpicker').selectpicker({
+  // style: 'btn-info',
+  
+});
 
 
 

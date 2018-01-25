@@ -144,6 +144,8 @@ $(document).keyup(function(e) {
   if (e.keyCode == 27) { 
     $('#post-container').fadeOut(250);
     $('#spot-details-container').fadeOut(250);
+
+    //addPostIframe.contentWindow.workWindow.resetForms();
   }
 });
 
