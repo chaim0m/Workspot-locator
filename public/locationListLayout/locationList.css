@@ -1,5 +1,10 @@
 .search-container {
-  padding-top: 10px;
+  padding: 20px 0;
+  position: fixed;
+  z-index: 200;
+  margin-left: 0;
+  margin-right: 0;
+  background: rgb(214, 210, 210);
 }
 
 .checked {
@@ -21,7 +26,9 @@
 }
 
 .workspot-list {
-  margin-top: 20px;
+  /* margin-top: 20px; */
+  padding-top: 73px;
+
 }
 
 .list-container:before {
@@ -33,4 +40,8 @@
   display: table;
   content: "";
   clear: both;
+}
+
+.bootstrap-select.btn-group .dropdown-toggle .filter-option {
+  width: 60px;
 }

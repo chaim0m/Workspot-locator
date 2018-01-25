@@ -1,38 +1,26 @@
-
 <body>
   <div class="row search-container">
     <div class="col-sm-10 col-sm-offset-1 hid">
+
       <div class="input-group">
-        <input id="search-list" type="text" class="form-control" aria-label="...">
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-filter" aria-hidden="true"></i>
-          </button>
-          <ul class="dropdown-menu dropdown-menu-right">
-            <li>
-              <a href="#">Action</a>
-            </li>
-            <li>
-              <a href="#">Another action</a>
-            </li>
-            <li>
-              <a href="#">Something else here</a>
-            </li>
-            <li role="separator" class="divider"></li>
-            <li>
-              <a href="#">Separated link</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /btn-group -->
+        <input type="text" id="search-list" class="form-control" placeholder="Search" aria-describedby="basic-addon1">
+        <select id="filter-options" class="selectpicker" title="filter" data-selected-text-format="count" width="50px" multiple>
+          <option value="0">Free</option>
+          <option value="1">Quiet</option>
+          <option value="3">Dog Friendly</option>
+          <option value="4">Has Food</option>
+        </select>
       </div>
-      <!-- /input-group -->
     </div>
-    <!-- /.col-lg-6 -->
+    <!-- /input-group -->
+  </div>
+  <!-- /.col-lg-6 -->
   </div>
   <!-- /.row -->
 
-  <div class="list-group workspot-list">   
+
+
+  <div class="list-group workspot-list">
   </div>
 
   <script id="card-template" type="text/x-handlebars-template">
@@ -55,6 +43,9 @@
     </div>
     </a>
   </script>
+
+  <link rel="stylesheet" href="bootstrap-select/dist/css/bootstrap-select.css">
+  <script src="bootstrap-select/dist/js/bootstrap-select.js"></script>
 
   <script src="locationListLayout/locationList.js"></script>
 
