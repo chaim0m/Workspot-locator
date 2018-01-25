@@ -72,8 +72,10 @@ workspot.getSpots(function (spots, markersArr) {
   list.renderCards(spots);
 });
 
+var old = iFrameDetails.onload;
 iFrameDetails.onload = function () {
   console.log("iFrameDetails loaded");
+  if(old) { old(); }
   list.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
 }
 // search the spots when the input-search is changed

@@ -124,6 +124,7 @@ let workspot = WorkspotLocatorApp();
 iFrameDetails.onload = function () {
   console.log("iFrameDetails loaded");
   workspot.setDetailsCallBack(iFrameDetails.contentWindow.workWindow.openDetails);
+  
 }
 let coordinate = { lat: 32.053786, lng: 34.7956447 };//default location for TLV area
 workspot.initMap(coordinate);
