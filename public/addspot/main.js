@@ -178,12 +178,16 @@ function goToPlaceDescription() {
 $("#form").submit(function (event) {
     event.preventDefault();
     // if (changedFunction) { isValid = changedFunction(); }
-
+        if(!isMapLocationSelected) {return}
         goToPlaceDescription();
 });
 
 $("#form2").submit(function (event) {
     event.preventDefault();
+    if(!isMapLocationSelected) {return}
+    if(!isPlaceDescriptionEntered) {
+        goToPlaceDescription();
+    }
 
     console.log("Submit Captured!");
     // TODO validateFields();
@@ -215,3 +219,4 @@ $("#form2").submit(function (event) {
     });
 });
 
+resetForms();
