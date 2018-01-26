@@ -131,18 +131,25 @@ $('.add-workspot-btn').on('click', function () {
 });
 
 $('.close-add-post').on('click', function () {
-  $('#post-container').fadeOut(250);
+    closeAddSpot();
 });
 
 $('.close-details-spot').on('click', function () {
   $('#spot-details-container').fadeOut(250);
 });
+
+function closeAddSpot() {
+    addPostIframe.contentWindow.resetForms();
+    $('#post-container').fadeOut(250);
+}
+
 $(document).keyup(function (e) {
   // when clicked esk button
   if (e.keyCode == 27) {
-    $('#post-container').fadeOut(250);
+      if($('#post-container').css('display') !== 'none'){
+          closeAddSpot();
+      }
     $('#spot-details-container').fadeOut(250);
-    //addPostIframe.contentWindow.workWindow.resetForms();
   }
 });
 

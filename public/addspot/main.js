@@ -168,7 +168,7 @@ function resetForms() {
     $('#form2').hide();
     $('#form').show();
     $('#map').css("visibility","hidden");
-    // $('checkbox').prop('checked', false);
+    $('#map').show();
 }
 
 function goToPlaceDescription() {
